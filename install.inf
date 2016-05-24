@@ -1,0 +1,55 @@
+[info]
+title=Spell Checker
+desc=Spell checker, highlights misspelled words (uses Hunspell lib)
+type=py-plugin
+subdir=syn_spell_checker
+
+[ini]
+section=Events
+id=SynSpellCheck
+params=on_change_slow;
+
+[ini1]
+section=Commands
+id=Spell Checker\Show highlights after editing on/off
+params=toggle_hilite
+
+[ini2]
+section=Commands
+id=Spell Checker\Check text
+params=check
+
+[ini3]
+section=Commands
+id=Spell Checker\Check text, with suggestions
+params=check_suggest
+
+[ini4]
+section=Commands
+id=Spell Checker\-1
+params=sep1
+
+[ini5]
+section=Commands
+id=Spell Checker\Go to next misspelled
+params=goto_next
+
+[ini6]
+section=Commands
+id=Spell Checker\Go to previous misspelled
+params=goto_prev
+
+[ini7]
+section=Commands
+id=Spell Checker\-2
+params=sep2
+
+[ini8]
+section=Commands
+id=Spell Checker\Select language
+params=select_dict
+
+[ini9]
+section=Commands
+id=Spell Checker\Edit config
+params=edit_config
