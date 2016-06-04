@@ -182,6 +182,42 @@ def do_work_if_name(ed_self):
         do_work()
 
 
+def do_work_word(with_dialog=False):
+    x, y = ed.get_caret_xy()
+    line = ed.get_text_line(y)
+    if not line: return
+
+    if not (0 <= x < len(line)) or not is_word_char(line[x]):
+        msg_status('Caret not on word-char')
+        return
+        
+    n1 = x
+    n2 = x
+    while n1>0 and is_word_char(line[n1-1]): n1-=1
+    while n2<len(line)-1 and is_word_char(line[n2+1]): n2+=1
+    x = n1
+                                
+    sub = line[n1:n2+1]
+    if not is_word_alpha(sub):
+        msg_status('Not text-word under caret')
+        return
+        
+    print('Check word under caret: "%s"' % sub)
+    if dict_obj.check(sub): return
+
+    if with_dialog:
+        ed.set_sel(ed.xy_pos(x, y), len(sub))
+        rep = dlg_spell(sub)
+        if rep is None: return
+        if rep=='': return
+        ed.replace(ed.xy_pos(x, y), len(sub), rep)
+    else:
+        ed.set_sel(ed.xy_pos(x, y), len(sub), True)
+        ed.set_attr(ATTRIB_COLOR_BG, html_color_to_int(op_color_back))
+        
+    ed.set_caret_xy(x, y) 
+
+
 def get_next_pos(offset, is_next):
     m = ed.get_attr()
     if not m: return
@@ -217,6 +253,12 @@ class Command:
     
     def check_suggest(self):
         do_work(True)
+      
+    def check_word(self):
+        do_work_word(False)
+    
+    def check_word_suggest(self):
+        do_work_word(True)
     
     def on_change_slow(self, ed_self):
         if self.active:

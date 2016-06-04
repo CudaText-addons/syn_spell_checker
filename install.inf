@@ -26,30 +26,40 @@ params=check_suggest
 
 [ini4]
 section=Commands
+id=Spell Checker\Check word
+params=check_word
+
+[ini5]
+section=Commands
+id=Spell Checker\Check word, with suggestions
+params=check_word_suggest
+
+[ini6]
+section=Commands
 id=Spell Checker\-1
 params=sep1
 
-[ini5]
+[ini7]
 section=Commands
 id=Spell Checker\Go to next misspelled
 params=goto_next
 
-[ini6]
+[ini8]
 section=Commands
 id=Spell Checker\Go to previous misspelled
 params=goto_prev
 
-[ini7]
+[ini9]
 section=Commands
 id=Spell Checker\-2
 params=sep2
 
-[ini8]
+[ini10]
 section=Commands
 id=Spell Checker\Select language
 params=select_dict
 
-[ini9]
+[ini11]
 section=Commands
 id=Spell Checker\Edit config
 params=edit_config
