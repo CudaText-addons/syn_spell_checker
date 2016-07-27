@@ -1,4 +1,8 @@
 
+2016.07.28
++ if selected, check sel only
++ show status after check 1 word
+
 2016.06.04
 + cmds "Check word"/ "check word, with suggestion"
 
