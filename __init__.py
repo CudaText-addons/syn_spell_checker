@@ -83,9 +83,10 @@ def dlg_spell(sub):
             return ''
             
 
-def dlg_select_dict():
+def dlg_select_dict(res):
     items = sorted(enchant.list_languages())
-    res = dlg_menu(MENU_SIMPLE, 'Langs', '\n'.join(items))
+    focused = items.index(res)
+    res = dlg_menu(MENU_SIMPLE, 'Langs', '\n'.join(items), focused)
     if res is None: return
     return items[res]
     
@@ -301,11 +302,11 @@ class Command:
         msg_status(text) 
 
     def select_dict(self):
-        res = dlg_select_dict()
-        if res is None: return
         global filename_ini
         global op_lang
         global dict_obj
+        res = dlg_select_dict(op_lang)
+        if res is None: return
         op_lang = res
         ini_write(filename_ini, 'op', 'lang', op_lang)
         dict_obj = enchant.Dict(op_lang)
